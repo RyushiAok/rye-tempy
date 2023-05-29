@@ -17,6 +17,9 @@ jobs:
       - name: Add Rye to PATH
         run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
 
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - run: rye sync
 
       - name: Run pytest with Rye
