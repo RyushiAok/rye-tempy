@@ -1,0 +1,23 @@
+name: Run pytest with Rye
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  setup:
+    name: Install Rye and configure environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rye
+        run: curl -sSf https://rye-up.com/get | sed -e 's/self install/self install -y/' | bash
+
+      - name: Add Rye to PATH
+        run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
+
+      - run: rye sync
+
+      - name: Run pytest with Rye
+        run: rye run pytest
