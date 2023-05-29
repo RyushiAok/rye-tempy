@@ -1,0 +1,35 @@
+name: Run pytest with Rye
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  setup:
+    name: Install Rye and configure environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Rye
+        run: curl -sSf https://rye-up.com/get | sed -e 's/self install/self install -y/' | bash
+
+      - name: Add Rye to PATH
+        run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
+
+      - name: Cache Rye
+        uses: actions/cache@v2
+        with:
+          path: ~/.rye
+          key: ${{ runner.os }}-rye-${{ hashFiles('.rye.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rye-
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: rye sync
+
+      - name: Run pytest with Rye
+        run: rye run pytest
