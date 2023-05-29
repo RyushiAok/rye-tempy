@@ -17,10 +17,19 @@ jobs:
       - name: Add Rye to PATH
         run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
 
+      - name: Cache Rye
+        uses: actions/cache@v2
+        with:
+          path: ~/.rye
+          key: ${{ runner.os }}-rye-${{ hashFiles('.rye.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rye-
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - run: rye sync
+      - name: Install dependencies
+        run: rye sync
 
       - name: Run pytest with Rye
         run: rye run pytest
