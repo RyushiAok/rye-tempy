@@ -11,25 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install Rye
-        run: curl -sSf https://rye-up.com/get | sed -e 's/self install/self install -y/' | bash
-
-      - name: Add Rye to PATH
-        run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
-
-      - name: Cache Rye
-        uses: actions/cache@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          path: ~/.rye
-          key: ${{ runner.os }}-rye-${{ hashFiles('.rye.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-rye-
+          ref: ${{ github.head_ref }}
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Install Rye
+        uses: baptiste0928/cargo-install@v2
+        with:
+          crate: rye
+          git: https://github.com/mitsuhiko/rye
+          branch: main
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: rye sync
 
-      - name: Run pytest with Rye
+      - name: Lint
+        run: rye run lint
+
+      - name: Test
         run: rye run pytest
