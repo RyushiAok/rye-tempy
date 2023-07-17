@@ -5,13 +5,25 @@ description = "Add a short description here"
 authors = [
     { name = "RyushiAok", email = "55625375+RyushiAok@users.noreply.github.com" },
 ]
-dependencies = []
+dependencies = ["torch>=2.0.1", "torchaudio>=2.0.2", "torchvision>=0.15.2"]
 readme = "README.md"
 requires-python = ">= 3.8"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[[tool.rye.sources]]
+name = "torch_cu118"
+url = "https://download.pytorch.org/whl/cu118"
+type = "index"
+
+
+[[tool.rye.sources]]
+name = "torch_cpu"
+url = "https://download.pytorch.org/whl/cpu"
+type = "index"
+
 
 [tool.rye]
 managed = true
@@ -53,15 +65,15 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 
 [tool.black]
-line-length = 128
+line-length = 100
 
 [tool.isort]
 profile = "black"
-line_length = 128
+line_length = 100
 multi_line_output = 3
 
 [tool.flake8]
-max-line-length = 128
+max-line-length = 100
 extend-ignore = ["E203", "W503"]
 exclude = [".venv", ".git", "__pycache__"]
 max-complexity = 10
