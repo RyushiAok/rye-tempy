@@ -1,11 +1,12 @@
 name: Run pytest with Rye
+# https://zenn.dev/link/comments/174f986fa82adb
 
 on: [push]
 
 jobs:
   setup:
     name: Install Rye and configure environment
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04 # https://github.com/actions/runner-images/discussions/7188
 
     steps:
       - name: Checkout
