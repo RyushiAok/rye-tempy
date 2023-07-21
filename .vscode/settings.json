@@ -4,7 +4,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/*/python",
 
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "${workspaceFolder}/.venv/Scripts/black",
