@@ -22,7 +22,7 @@ jobs:
           branch: main
 
       - name: Install Dependencies
-        run: rye sync
+        run: rye sync --no-lock
 
       - name: Lint
         run: rye run lint

@@ -1,5 +1,5 @@
 [project]
-name = "hello-rye"
+name = "rye-tempy"
 version = "0.1.0"
 description = "Add a short description here"
 authors = [
@@ -31,12 +31,12 @@ dev-dependencies = [
     "black~=23.3.0",
     "mypy~=1.3.0",
     "isort~=5.12.0",
-    "flake8~=5.0.4",
-    "pyproject-flake8~=5.0.4.post1",
-    "flake8-isort~=6.0.0",
-    "flake8-bugbear~=23.3.12",
-    "flake8-unused-arguments~=0.0.13",
-    "flake8-pytest-style~=1.7.2",
+    "flake8>=5.0.4",
+    "pyproject-flake8>=5.0.4.post1",
+    "flake8-isort>=6.0.0",
+    "flake8-bugbear>=23.3.12",
+    "flake8-unused-arguments>=0.0.13",
+    "flake8-pytest-style>=1.7.2",
     "pep8-naming~=0.13.3",
     "pytest~=7.3.1",
     "setuptools~=67.8.0",
@@ -44,12 +44,14 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
-hello-rye = "python src/main.py"
+prepare = "pre-commit install"
+main = "python src/main.py"
 lint = { chain = ["lint:black", "lint:isort", "lint:flake8"] }
 "lint:black" = "black --check src tests"
 "lint:isort" = "isort --check-only src tests"
-"lint:flake8" = "flake8 src tests"
+"lint:flake8" = "pflake8"
 format = "black src tests"
+test = "pytest"
 
 [tool.hatch.metadata]
 allow-direct-references = true
