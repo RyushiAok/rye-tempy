@@ -1,5 +1,5 @@
 [project]
-name = "hello-rye"
+name = "rye-tempy"
 version = "0.1.0"
 description = "Add a short description here"
 authors = [
@@ -44,7 +44,7 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
-hello-rye = "python src/main.py"
+main = "python src/main.py"
 lint = { chain = ["lint:black", "lint:isort", "lint:flake8"] }
 "lint:black" = "black --check src tests"
 "lint:isort" = "isort --check-only src tests"
