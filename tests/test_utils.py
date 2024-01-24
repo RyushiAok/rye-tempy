@@ -1,4 +1,4 @@
-from src.utils import add, div, mul, sub
+from utils import add, div, mul, sub
 
 
 def test_answer() -> None:
