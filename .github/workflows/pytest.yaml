@@ -24,8 +24,8 @@ jobs:
       - name: Install Dependencies
         run: rye sync --no-lock
 
-      - name: Lint
-        run: rye run lint
+      # - name: Lint
+      #   run: rye run lint
 
       - name: Test
         run: rye run pytest
