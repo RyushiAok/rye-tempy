@@ -5,10 +5,7 @@ description = "Add a short description here"
 authors = [
     { name = "RyushiAok", email = "55625375+RyushiAok@users.noreply.github.com" },
 ]
-dependencies = [
-    "torch>=2.2.1",
-    "numpy>=1.26.3",
-]
+dependencies = ["torch>=2.2.1", "numpy>=1.26.3"]
 readme = "README.md"
 requires-python = ">= 3.10"
 
@@ -20,8 +17,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [[tool.rye.sources]]
-name = "torch_cu121"
-url = "https://download.pytorch.org/whl/cu121"
+name = "torch_cu123"
+url = "https://download.pytorch.org/whl/cu123"
 type = "index"
 
 [tool.rye]
