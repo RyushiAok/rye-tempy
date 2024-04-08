@@ -21,6 +21,8 @@ jobs:
           git: https://github.com/mitsuhiko/rye
           branch: main
 
+      - run: rye config --set-bool behavior.use-uv=true
+
       - name: Install Dependencies
         run: rye sync --no-lock
 
